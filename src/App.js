@@ -7,7 +7,7 @@ import Recipe from './Recipe';
 
 function App() {
 
-    //Authentication
+    //Authentication - You need to provide app-id and -key yourself
   const APP_ID = "";
   const APP_KEY = "";
 
