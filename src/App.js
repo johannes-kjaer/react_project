@@ -17,12 +17,11 @@ function App() {
 
   useEffect(() => {
     getRecipes();
-  }, []);
+  }, [query]);
 
   const getRecipes = async () => {
-    const response = await fetch(`https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`);
+    const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
     const data = await response.json();
-    image
     setRecipes(data.hits);
     console.log(data.hits);
   };
@@ -33,7 +32,8 @@ function App() {
   };
 
   const getSearch = e => {
-
+    e.preventDefault();
+    setQuery(search);
   }
 
   return (
@@ -50,6 +50,7 @@ function App() {
           title={recipe.recipe.label}
           calories={recipe.recipe.calories}
           image={recipe.recipe.image}
+          ingredients={recipe.recipe.ingredients}
           />
       ))}
     </MyApp>
@@ -59,12 +60,24 @@ function App() {
 export default App;
 
 const MyApp = styled.div`
+  background-image: linear-gradient(90deg, #fccb90 0%, #d57eeb 100%);)
 `;
 const SearchForm = styled.form`
+  min-height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 const SearchBar = styled.input`
+  width: 50%;
+  border: none;
+  padding: 10px;
 `;
 const SearchButton = styled.button`
+  border: none;
+  padding: 10px;
 `;
 const H1 = styled.h1`
+`;
+const Ol = styled.ol`
 `;
